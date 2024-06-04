@@ -1,7 +1,9 @@
+ 
+import '../styles/styles.css';
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../styles/styles.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -11,9 +13,10 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/users/login', { username, password });
+      const response = await axios.post('/api/users/login', { username, password });
       localStorage.setItem('token', response.data.token);
-      navigate('/search');
+      // Redirect or perform any other action after successful login
+      navigate('/dashboard');
     } catch (error) {
       console.error(error.message);
       alert('Login failed');
@@ -40,7 +43,6 @@ function Login() {
         /><br /><br />
         <button type="submit">Login</button>
       </form>
-      <p>Don't have an account? <a href="/signup">Sign up</a></p>
     </div>
   );
 }

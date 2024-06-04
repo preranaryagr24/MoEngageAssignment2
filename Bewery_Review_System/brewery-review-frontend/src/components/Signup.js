@@ -1,20 +1,17 @@
- 
-import '../styles/styles.css';
- 
+// signup.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 function Signup() {
-  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/users/register', { username, password });
-      navigate('/login');
+      await axios.post('/api/signup', { username, password });
+      // Redirect or perform any other action after successful signup
     } catch (error) {
       console.error(error.message);
       alert('Signup failed');

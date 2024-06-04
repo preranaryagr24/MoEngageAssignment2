@@ -1,7 +1,8 @@
-const express = require('express');
-const axios = require('axios');
+import express from 'express';
+import axios from 'axios';
+import Review from '../../brewery-review-frontend/src/components/Review.js';
+
 const router = express.Router();
-const Review = require('../models/Review');
 
 // Search Breweries
 router.get('/search', async (req, res) => {
@@ -37,4 +38,4 @@ router.post('/:id/review', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

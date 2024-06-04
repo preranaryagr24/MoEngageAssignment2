@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Bewery Review System",
   "main": "server.js",
-  "type": "module",
+  "type": "commonjs",
+  
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js"
@@ -35,5 +36,9 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.2"
+  },
+  "dependencies": {
+    "mongoose": "^6.0.12"
+    
   }
 }

@@ -1,24 +1,22 @@
- 
 import '../styles/styles.css';
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/users/login', { username, password });
-      localStorage.setItem('token', response.data.token);
+      const response = await axios.post('http://localhost:5000/api/v1/users/login', { name, password });
+      localStorage.setItem('token', response.data.accessToken); // Assuming the token is in accessToken property
       // Redirect or perform any other action after successful login
-      navigate('/dashboard');
+      navigate('/review');
     } catch (error) {
-      console.error(error.message);
+      console.error('Login failed', error.message);
       alert('Login failed');
     }
   };
@@ -27,12 +25,12 @@ function Login() {
     <div className="container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label><br />
+        <label htmlFor="name">Name:</label><br />
         <input
           type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         /><br />
         <label htmlFor="password">Password:</label><br />
         <input
